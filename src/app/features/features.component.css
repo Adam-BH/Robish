@@ -1,0 +1,458 @@
+.h {
+    font-family: 'Oswald', sans-serif;
+    font-size: 250px;
+    position: relative;
+    top: 350px;
+    color: #041E42;
+}
+
+.ft {
+    display: flex;
+    flex-direction: row;
+}
+
+.ic {
+    font-size: 40px;
+    color: black;
+    position: relative;
+    bottom: 35px;
+    right: 30px;
+}
+
+.ica {
+    font-size: 40px;
+    color: snow;
+    bottom: 25px;
+    position: relative;
+}
+
+.feat {
+    font-size: 30px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.s2 {
+    margin: 50px;
+    position: relative;
+    top: 50px;
+}
+
+.br {
+    border: 3.5px solid black;
+    border-radius: 25% 10%;
+    padding: 50px;
+    margin: 10px;
+}
+
+.br:hover {
+    background-color: black;
+}
+
+.br:hover .feat {
+    color: snow;
+}
+
+.br:hover .ic {
+    color: snow;
+}
+
+.app {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    left: 350px;
+    color: snow;
+}
+
+.bra {
+    border: 3.5px solid snow;
+    padding: 30px;
+    margin: 10px;
+}
+
+.bra:hover {
+    background-color: snow;
+    background-size: 75px 100px;
+    cursor: pointer;
+}
+
+.bra:hover .app {
+    color: black;
+}
+
+.bra:hover .ica {
+    color: black;
+}
+
+.br1 {
+    border: 3.5px solid #48B;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat1 {
+    color: #48B;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 60px;
+}
+
+.ic1 {
+    color: #48B;
+    font-size: 40px;
+}
+
+.br1:hover {
+    background-color: #48B;
+}
+
+.br1:hover .feat1 {
+    color: snow;
+}
+
+.br1:hover .ic1 {
+    color: snow;
+}
+
+.br2 {
+    border: 3.5px solid #DD4B3E;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat2 {
+    color: #DD4B3E;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 50px;
+}
+
+.ic2 {
+    color: #DD4B3E;
+    font-size: 40px;
+}
+
+.br2:hover {
+    background-color: #DD4B3E;
+}
+
+.br2:hover .feat2 {
+    color: snow;
+}
+
+.br2:hover .ic2 {
+    color: snow;
+}
+
+.br3 {
+    border: 3.5px solid #fde084;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat3 {
+    color: #fde084;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 60px;
+}
+
+.ic3 {
+    color: #fde084;
+    font-size: 40px;
+}
+
+.br3:hover {
+    background-color: #fde084;
+}
+
+.br3:hover .feat3 {
+    color: snow;
+}
+
+.br3:hover .ic3 {
+    color: snow;
+}
+
+.br4 {
+    border: 3.5px solid #b59b7c;
+    border-radius: 25% 10%;
+    padding: 40px;
+    margin: 10px;
+}
+
+.feat4 {
+    color: #b59b7c;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.ic4 {
+    color: #b59b7c;
+    font-size: 40px;
+    position: relative;
+    bottom: 35px;
+    right: 30px;
+}
+
+.br4:hover {
+    background-color: #b59b7c;
+}
+
+.br4:hover .feat4 {
+    color: snow;
+}
+
+.br4:hover .ic4 {
+    color: snow;
+}
+
+.br5 {
+    border: 3.5px solid darkcyan;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat5 {
+    color: darkcyan;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 60px;
+}
+
+.ic5 {
+    color: darkcyan;
+    font-size: 40px;
+}
+
+.br5:hover {
+    background-color: darkcyan;
+}
+
+.br5:hover .feat5 {
+    color: snow;
+}
+
+.br5:hover .ic5 {
+    color: snow;
+}
+
+.br6 {
+    border: 3.5px solid brown;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat6 {
+    color: brown;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 60px;
+}
+
+.ic6 {
+    color: brown;
+    font-size: 40px;
+}
+
+.br6:hover {
+    background-color: brown;
+}
+
+.br6:hover .feat6 {
+    color: snow;
+}
+
+.br6:hover .ic6 {
+    color: snow;
+}
+
+.br7 {
+    border: 3.5px solid #808080;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat7 {
+    color: #808080;
+    font-size: 30px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 50px;
+}
+
+.ic7 {
+    color: #808080;
+    font-size: 40px;
+}
+
+.br7:hover {
+    background-color: #808080;
+}
+
+.br7:hover .feat7 {
+    color: snow;
+}
+
+.br7:hover .ic7 {
+    color: snow;
+}
+
+.br8 {
+    border: 3.5px solid #fa8900;
+    border-radius: 25% 10%;
+    padding: 40px;
+    margin: 10px;
+}
+
+.feat8 {
+    color: #fa8900;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.ic8 {
+    color: #fa8900;
+    font-size: 40px;
+    position: relative;
+    bottom: 35px;
+    right: 30px;
+}
+
+.br8:hover {
+    background-color: #fa8900;
+}
+
+.br8:hover .feat8 {
+    color: snow;
+}
+
+.br8:hover .ic8 {
+    color: snow;
+}
+
+.br9 {
+    border: 3.5px solid #7289DA;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat9 {
+    color: #7289DA;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 60px;
+}
+
+.ic9 {
+    color: #7289DA;
+    font-size: 40px;
+}
+
+.br9:hover {
+    background-color: #7289DA;
+}
+
+.br9:hover .feat9 {
+    color: snow;
+}
+
+.br9:hover .ic9 {
+    color: snow;
+}
+
+.br10 {
+    border: 3.5px solid#31c462;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat10 {
+    color: #31c462;
+    font-size: 35px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 60px;
+}
+
+.ic10 {
+    color: #31c462;
+    font-size: 40px;
+}
+
+.br10:hover {
+    background-color: #31c462;
+}
+
+.br10:hover .feat10 {
+    color: snow;
+}
+
+.br10:hover .ic10 {
+    color: snow;
+}
+
+.br11 {
+    border: 3.5px solid#6a0dad;
+    border-radius: 25% 10%;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 5px;
+    margin: 10px;
+}
+
+.feat11 {
+    color: #6a0dad;
+    font-size: 30px;
+    font-family: 'Dosis', sans-serif;
+    position: relative;
+    top: 50px;
+}
+
+.ic11 {
+    color: #6a0dad;
+    font-size: 40px;
+}
+
+.br11:hover {
+    background-color: #6a0dad;
+}
+
+.br11:hover .feat11 {
+    color: snow;
+}
+
+.br11:hover .ic11 {
+    color: snow;
+}

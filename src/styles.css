@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Oswald:wght@700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);
+@import url(https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&family=Yantramanav:wght@300&family=Zen+Tokyo+Zoo&display=swap);
+body {
+    background-image: linear-gradient( 225deg, #8860D0, #5680E9, #5AB9EA, #84CEEB, #C1C8E4, #84CEEB, #5AB9EA, #5680E9, #8860D0);
+    background-size: 400% 400%;
+    position: relative;
+    animation: change 10s ease-in-out infinite;
+}
+
+@keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
