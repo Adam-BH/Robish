@@ -1,0 +1,111 @@
+.ha {
+    font-size: 50px;
+    color: snow;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.order {
+    display: flex;
+    flex-direction: row;
+}
+
+.order1 {
+    border-radius: 50px;
+    border: 6px snow solid;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-left: 350px;
+    margin-right: 350px;
+    padding-top: 30px;
+}
+
+.dis {
+    font-size: 30px;
+    color: black;
+    font-family: 'Dosis', sans-serif;
+}
+
+.logo {
+    width: 350px;
+    height: auto;
+    position: relative;
+    top: 35px;
+    margin-right: 50px;
+    border-radius: 30px;
+}
+
+#btn {
+    position: relative;
+    margin-bottom: 30px;
+    left: 475px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#btnc {
+    position: relative;
+    margin-bottom: 30px;
+    left: 850px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+.hb {
+    font-size: 50px;
+    color: snow;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.form {
+    display: none;
+    position: relative;
+    background-color: #ffff;
+    padding: 75px;
+    position: relative;
+    bottom: 600px;
+    margin-left: 500px;
+    margin-right: 500px;
+    border-radius: 40px;
+}
+
+.email {
+    font-size: 30px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.tarea {
+    resize: none;
+    width: 500px;
+    height: 100px;
+    position: relative;
+    left: 125px;
+}
+
+.frm {
+    display: flex;
+    flex-direction: row;
+}
+
+.textarea {
+    font-size: 30px;
+    font-family: 'Dosis', sans-serif;
+    text-align: center;
+}
+
+#btns {
+    margin: 10px;
+    width: 150px;
+    height: 50px;
+    position: relative;
+    left: 200px;
+}
