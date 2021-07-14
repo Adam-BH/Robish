@@ -1,12 +1,31 @@
 .h {
     font-family: 'Oswald', sans-serif;
-    font-size: 250px;
+    font-size: 20vw;
     position: relative;
-    top: 350px;
+
     color: #041E42;
 }
 
 .ft {
+    display: flex;
+    flex-direction: row;
+}
+
+.ft1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ft2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ft-app {
     display: flex;
     flex-direction: row;
 }
@@ -34,7 +53,7 @@
 .s2 {
     margin: 50px;
     position: relative;
-    top: 50px;
+
 }
 
 .br {
@@ -61,7 +80,7 @@
     font-size: 40px;
     font-family: 'Dosis', sans-serif;
     position: relative;
-    left: 350px;
+    margin: auto;
     color: snow;
 }
 
@@ -455,4 +474,13 @@
 
 .br11:hover .ic11 {
     color: snow;
+}
+@media only screen and (max-width: 1000px){
+    .ft{
+        flex-direction: column;
+    }
+    .feat0{
+        top:0;
+    }
+
 }
