@@ -10,13 +10,13 @@ export class OrderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
-     openForm() {
+   openForm() {
     document.getElementById("myForm").style.display = "block";
-    }
+}
 
-   closeForm() {
+  closeForm() {
     document.getElementById("myForm").style.display = "none";
-} }
+}
+ }
 

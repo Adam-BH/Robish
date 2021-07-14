@@ -90,18 +90,27 @@ span {
 h2 {
     font-weight: bold;
 }
-@media only screen and (max-width: 1100px){
-.cards{
-    flex-direction: column;
-}
-.card{
-    margin-block-end: 20%;
-}
-.div1, .div2{
-    flex-direction: column;
+
+@media only screen and (max-width: 1100px) {
+    .cards {
+        flex-direction: column;
+    }
+    .card {
+        margin-block-end: 20%;
+    }
+    .div1,
+    .div2 {
+        flex-direction: column;
+    }
+    .illustration {
+        width: 60%;
+    }
 }
 
-.illustration{
-    width: 60%;
-}
+@media only screen and (min-width: 1600px) {
+    p {
+        font-size: 20px;
+        color: #0503937a;
+        font-weight: bold;
+    }
 }

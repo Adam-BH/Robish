@@ -1,3 +1,9 @@
-.router{
+.router {
     margin: 20% 0% 10% 0%;
+}
+
+@media only screen and (min-width: 1600px) {
+    .router {
+        margin: 10% 0% 10% 0%;
+    }
 }
