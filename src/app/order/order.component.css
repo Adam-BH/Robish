@@ -103,7 +103,7 @@
     align-items: center;
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1023px) {
     .order {
         display: flex;
         flex-direction: column;
@@ -112,6 +112,15 @@
     .logo {
         width: 100%;
     }
+    #btn {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        left: 200px;
+    }
 }
 
 #o {
@@ -119,6 +128,7 @@
 }
 
 .ftco-section {
+    display: none;
     background: radial-gradient(circle at 100% 50%, transparent 20%, #00D4F0 21%, #00D4F0 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, #00D4F0 21%, #00D4F0 34%, transparent 35%, transparent) 0 -50px;
     background-color: snow;
     background-size: 75px 100px;
@@ -144,5 +154,24 @@
         padding-top: 10px;
         padding-bottom: 10px;
         right: 50px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+    .logo {
+        width: 50%;
+        height: auto;
+        position: relative;
+        top: 250px;
+        border-radius: 30px;
+    }
+    #btn {
+        position: relative;
+        margin-bottom: 30px;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        right: 60px;
     }
 }
