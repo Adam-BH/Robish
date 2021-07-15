@@ -2,7 +2,6 @@
     font-family: 'Oswald', sans-serif;
     font-size: 20vw;
     position: relative;
-
     color: #041E42;
 }
 
@@ -53,7 +52,6 @@
 .s2 {
     margin: 50px;
     position: relative;
-
 }
 
 .br {
@@ -475,12 +473,12 @@
 .br11:hover .ic11 {
     color: snow;
 }
-@media only screen and (max-width: 1000px){
-    .ft{
+
+@media only screen and (max-width: 1000px) {
+    .ft {
         flex-direction: column;
     }
-    .feat0{
-        top:0;
+    .feat0 {
+        top: 0;
     }
-
 }

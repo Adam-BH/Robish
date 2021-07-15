@@ -64,18 +64,6 @@
     margin-top: 50px;
 }
 
-.form {
-    display: none;
-    position: relative;
-    background-color: #ffff;
-    padding: 75px;
-    position: relative;
-    bottom: 600px;
-    margin-left: 500px;
-    margin-right: 500px;
-    border-radius: 40px;
-}
-
 .email {
     font-size: 30px;
     font-family: 'Dosis', sans-serif;
@@ -124,6 +112,20 @@
     .logo {
         width: 100%;
     }
+}
+
+#o {
+    color: snow;
+}
+
+.ftco-section {
+    background: radial-gradient(circle at 100% 50%, transparent 20%, #00D4F0 21%, #00D4F0 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, #00D4F0 21%, #00D4F0 34%, transparent 35%, transparent) 0 -50px;
+    background-color: snow;
+    background-size: 75px 100px;
+    width: auto;
+    height: auto;
+    position: relative;
+    bottom: 850px;
 }
 
 @media only screen and (min-width: 1600px) {

@@ -11,12 +11,5 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-   openForm() {
-    document.getElementById("myForm").style.display = "block";
-}
-
-  closeForm() {
-    document.getElementById("myForm").style.display = "none";
-}
  }
 
