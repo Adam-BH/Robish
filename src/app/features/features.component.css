@@ -477,11 +477,18 @@
 @media only screen and (max-width: 1000px) {
     .ft {
         flex-direction: column;
+        width: 100%;
     }
     .feat0 {
         top: 0;
+        align-items: center;
     }
     .br0 {
-        width: 50%;
+        margin-inline: 5%;
+    }
+    .ft2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
