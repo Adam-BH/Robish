@@ -105,6 +105,7 @@ header {
 .scrolling-active .nav {
     height: 4.6rem;
 }
+
 .scrolling-active .nav a {
     color: #313131;
 }
@@ -122,12 +123,21 @@ header {
     background-color: #313131;
 }
 
-@media only screen and (max-width: 950px){
-    #nav-cta{
+#myImage {
+    width: 65px;
+    height: auto;
+    position: relative;
+    bottom: 5px;
+    filter: grayscale(100%);
+}
+
+@media only screen and (max-width: 950px) {
+    #nav-cta {
         display: none;
     }
 }
-@media only screen and (max-width: 800px){
+
+@media only screen and (max-width: 800px) {
     .logo {
         display: none;
     }
