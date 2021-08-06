@@ -3,8 +3,8 @@
         <google-map [options]="mapoptions" height="400px" width="700px" width="100%">
             <map-marker [position]="RobishPosition" [options]="RobishOptions" #marker="mapMarker" (mapClick)="openInfoWindow(marker)"></map-marker>
             <map-info-window>This is Robish</map-info-window>
-            <map-marker [options]="TrashOptions" [position]="TrashPosition" *ngFor="let TrashPosition of TrashPositions" #trashmarker="mapMarker" (mapClick)="openTinfoWindow(trashmarker)"></map-marker>
-            <map-info-window>This is Trash</map-info-window>
+            <map-marker [options]="TrashOptions" [position]="TrashPosition" *ngFor="let TrashPosition of TrashPositions" #marker="mapMarker" (mapClick)="openTinfoWindow(marker)"></map-marker>
+            <map-info-window id="Trash">This is Trash</map-info-window>
             <map-marker [position]="markerPosition" [options]="EndOptions">
             </map-marker>
         </google-map>

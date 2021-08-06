@@ -20,10 +20,9 @@ export class DeviceConnectedComponent implements OnInit {
     openInfoWindow(marker: MapMarker) {
       this.infoWindow.open(marker);
     }
-
     @ViewChild(MapInfoWindow) tinfoWindow: MapInfoWindow;
-    openTinfoWindow(trashmarker: MapMarker) {
-      this.tinfoWindow.open(trashmarker);
+    openTinfoWindow(marker: MapMarker) {
+      this.tinfoWindow.open(getElementById("Trash"));
     }
 
 
@@ -115,5 +114,9 @@ export class DeviceConnectedComponent implements OnInit {
     icon:this.Endicon
   }
 
+}
+
+function getElementById(arg0: string): any {
+  throw new Error('Function not implemented.');
 }
 
