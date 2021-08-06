@@ -30,7 +30,6 @@ img {
 .map {
     border: 10px solid #ffffff;
     height: 400px;
-    border-radius: 25px;
     animation-name: bounce;
     animation-duration: 15s;
     animation-iteration-count: infinite;
@@ -127,7 +126,6 @@ img {
     .map {
         border: 10px solid #ffffff;
         height: 400px;
-        border-radius: 25px;
         animation-name: bounce;
         animation-duration: 15s;
         animation-iteration-count: infinite;

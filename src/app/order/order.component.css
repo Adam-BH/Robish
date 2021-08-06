@@ -25,7 +25,7 @@
 
 .dis {
     font-size: 30px;
-    color: black;
+    color: snow;
     font-family: 'Dosis', sans-serif;
     margin: 5%;
 }
@@ -127,10 +127,13 @@
     color: snow;
 }
 
+.ElQuadrado {
+    color: snow;
+}
+
 .ftco-section {
     display: none;
-    background: radial-gradient(circle at 100% 50%, transparent 20%, #00D4F0 21%, #00D4F0 34%, transparent 35%, transparent), radial-gradient(circle at 0% 50%, transparent 20%, #00D4F0 21%, #00D4F0 34%, transparent 35%, transparent) 0 -50px;
-    background-color: snow;
+    background-color: #36454F;
     background-size: 75px 100px;
     width: auto;
     height: auto;
