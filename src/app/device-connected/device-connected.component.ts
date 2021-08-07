@@ -5,7 +5,6 @@ import { catchError, map, max } from 'rxjs/operators';
 import { faTrash} from "@fortawesome/free-solid-svg-icons";
 import { faFlagCheckered } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import {MapInfoWindow, MapMarker} from '@angular/google-maps';
 
 
@@ -20,6 +19,10 @@ export class DeviceConnectedComponent implements OnInit {
     @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
     openInfoWindow(marker: MapMarker) {
       this.infoWindow.open(marker);
+    }
+    @ViewChild(MapInfoWindow) tinfoWindow: MapInfoWindow;
+    openTinfoWindow(marker: MapMarker) {
+      this.tinfoWindow.open(getElementById("Trash"));
     }
 
 
@@ -38,12 +41,12 @@ export class DeviceConnectedComponent implements OnInit {
 
   RobishPosition = {lat: 36.8867,lng: 10.3317};
   RobishIcon= {
-    path: faRobot.icon[4] as string,
+    path: faUserCircle.icon[4] as string,
     fillColor: "#1E90FF",
     fillOpacity: 1,
     anchor: new google.maps.Point(
-      faRobot.icon[0] / 2, 
-      faRobot.icon[1] 
+      faUserCircle.icon[0] / 2, 
+      faUserCircle.icon[1] 
     ),
     strokeWeight: 0.5,
     strokeColor: "#ffffff",
@@ -92,7 +95,6 @@ export class DeviceConnectedComponent implements OnInit {
     {lat: 36.8867,lng: 10.3315},
     {lat: 36.8868,lng: 10.3318},
     {lat: 36.8869,lng: 10.3311}]
-    EndPosition = {lat: 36.8866,lng: 10.3316};
 
   Endicon= {
     path: faFlagCheckered.icon[4] as string,
@@ -109,37 +111,12 @@ export class DeviceConnectedComponent implements OnInit {
   EndOptions: google.maps.MarkerOptions = {
     draggable: false,
     animation: google.maps.Animation.DROP,
-    icon:this.Endicon,
-    position:this.EndPosition
-  }
-
-  bounds: google.maps.LatLngBoundsLiteral = {
-    east: this.RobishPosition.lng,
-    north: this.EndPosition.lat,
-    south: this.RobishPosition.lat,
-    west: this.EndPosition.lng,
-  };
-
-  UserPosition = {lat: 36.88671,lng: 10.33171};
-  UserIcon= {
-    path: faUserCircle.icon[4] as string,
-    fillColor: "#FF0000",
-    fillOpacity: 1,
-    anchor: new google.maps.Point(
-      faUserCircle.icon[0] / 2, 
-      faUserCircle.icon[1] 
-    ),
-    strokeWeight: 0.5,
-    strokeColor: "#ffffff",
-    scale: 0.075,
-  };
-
-  UserOptions: google.maps.MarkerOptions = {
-    draggable: false,
-    animation: google.maps.Animation.DROP,
-    icon:this.UserIcon,
+    icon:this.Endicon
   }
 
 }
 
+function getElementById(arg0: string): any {
+  throw new Error('Function not implemented.');
+}
 

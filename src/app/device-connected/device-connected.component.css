@@ -11,14 +11,6 @@ section {
     border-radius: 25px;
 }
 
-.trashbtns {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 15px;
-    align-items: stretch;
-}
-
 img {
     width: 100%;
 }
