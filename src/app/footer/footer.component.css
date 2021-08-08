@@ -59,3 +59,91 @@
     color: #aaa;
     margin-bottom: 0;
 }
+
+/* import { Component, OnInit } from '@angular/core';
+import { RoomCrudService } from '../services/room-crud.service';
+import { map } from 'rxjs/operators';
+@Component({
+  selector: 'app-device-connected',
+  templateUrl: './device-connected.component.html',
+  styleUrls: ['./device-connected.component.css']
+})
+export class DeviceConnectedComponent implements OnInit {
+  harmfulList:any;
+  harmlessList:any;
+  destination:any;
+  location:any;
+  battery:any;
+  
+  constructor(private roomservice: RoomCrudService) { }
+
+  ngOnInit(): void {
+    // this.getAllHarmful();
+    // this.getAllHarmless();
+    // this.getAllDestination();
+    // this.getAllLocation();
+    // this.getAllBattery();
+    this.getAll();
+  }
+  getAllHarmful(){
+    this.roomservice.getAllHarmful().snapshotChanges().
+    pipe(map(changes => changes.map(c => ({key: c.payload.key, ... c.payload.val()})))).subscribe(rs=> {
+      console.log(rs);
+      this.harmfulList = rs;
+    })
+  }
+
+  getAllHarmless(){
+    this.roomservice.getAllHarmless().snapshotChanges().
+    pipe(map(changes => changes.map(c => ({key: c.payload.key, ... c.payload.val()})))).subscribe(rs=> {
+      console.log(rs);
+      this.harmlessList = rs;
+    })
+  }
+
+  getAllDestination(){
+    this.roomservice.getAllDestination().snapshotChanges().
+    pipe(map(changes => changes.map(c => ({key: c.payload.key, ... c.payload.val()})))).subscribe(rs=> {
+      console.log('destination');
+      console.log('X',rs[0].X);
+      console.log('Y',rs[0].Y);
+      this.destination ={
+        X:rs[0].X,
+        Y:rs[0].Y
+      };
+    })
+  }
+
+  getAllLocation(){
+    this.roomservice.getAllLocation().snapshotChanges().
+    pipe(map(changes => changes.map(c => ({key: c.payload.key, ... c.payload.val()})))).subscribe(rs=> {
+      console.log('location');
+      console.log('X',rs[0].X);
+      console.log('Y',rs[0].Y);
+      this.location = {
+        X:rs[0].X,
+        Y:rs[0].Y
+      };
+    })
+  }
+
+  getAllBattery(){
+    this.roomservice.getAllBattery().snapshotChanges().
+    pipe(map(changes => changes.map(c => ({key: c.payload.key, ... c.payload.val()})))).subscribe(rs=> {
+      console.log('battery');
+      console.log(rs);
+      this.battery = {
+        percentage: rs[0]
+      };
+    })
+  }
+ 
+  getAll(){
+    this.roomservice.getAll().snapshotChanges().
+    pipe(map(changes => changes.map(c => ({key: c.payload.key, ... c.payload.val()})))).subscribe(rs=> {
+      console.log('robot');
+      console.log(rs[0].battery.percentage);
+      
+    })
+  }
+} */

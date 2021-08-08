@@ -18,19 +18,23 @@
         </div>
         <div class="func ">
             <h3 class="st ">Status:ON/OFF</h3>
-            <h3 class="st ">Battery Percentage:100%</h3>
+            <h3 class="st ">Battery Percentage:{{battery}}</h3>
             <h3 class="st ">Distance Crossed:50M</h3>
-            <h3 class="st " style="margin-bottom: 20px; ">Trashs Detected:30</h3>
+            <h3 class="st " style="margin-bottom: 20px; ">Trash Detected:30</h3>
             <div class="all-btns ">
                 <div class="btns ">
                     <button type="button " class="btn btn-success ">Reboot</button>
                     <button type="button " class="btn btn-danger ">Turn OFF</button>
                 </div>
                 <div style="width: 50%; ">
-                    <button type="reset " value="Reset " button type="button " class="btn btn-warning " style="width: 100%; ">Reset Stats</button>
+                    <button (click)="show()" type="reset " value="Reset " button type="button " class="btn btn-warning " style="width: 100%; " id="reset1">Reset Stats</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script language="javascript">
+        setTimeout(function(){
+        window.location.reload(1);
+        }, 5000);
+        </script>
 </section>
