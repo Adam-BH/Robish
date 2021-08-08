@@ -6,8 +6,8 @@ import { catchError, map, max } from 'rxjs/operators';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faFlagCheckered } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-
 
 import { RoomCrudService } from '../services/room-crud.service';
 
@@ -25,32 +25,25 @@ export class DeviceConnectedComponent implements OnInit {
   location: any;
   battery: any;
 
-  
-  RobishPosition!:any
-  TrashPositions: google.maps.LatLngLiteral[]
 
-  ngOnInit(): void {
-    // this.getAllHarmful();
-    // this.getAllHarmless();
-    // this.getAllDestination();
-    // this.getAllLocation();
-    // this.getAllBattery();
-    this.getAll();
+  RobishPosition!:any
+  
+  TrashPositions: google.maps.LatLngLiteral[]
+  EndPosition!:any
+
+ngOnInit(): void {
+    this.secondFunction()
 
 
   }
-  show(){
-    console.log(this.RobishPosition,this.TrashPositions)
+  show() {
+    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition)
   }
 
   apiLoaded: Observable<boolean>;
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
   openInfoWindow(marker: MapMarker) {
     this.infoWindow.open(marker);
-  }
-  @ViewChild(MapInfoWindow) tinfoWindow: MapInfoWindow;
-  openTinfoWindow(marker: MapMarker) {
-    this.tinfoWindow.open(this.getElementById("Trash"));
   }
 
 
@@ -64,15 +57,13 @@ export class DeviceConnectedComponent implements OnInit {
   }
 
 
-  
-  
   RobishIcon = {
-    path: faUserCircle.icon[4] as string,
+    path: faRobot.icon[4] as string,
     fillColor: "#1E90FF",
     fillOpacity: 1,
     anchor: new google.maps.Point(
-      faUserCircle.icon[0] / 2,
-      faUserCircle.icon[1]
+      faRobot.icon[0] / 2,
+      faRobot.icon[1]
     ),
     strokeWeight: 0.5,
     strokeColor: "#ffffff",
@@ -87,11 +78,12 @@ export class DeviceConnectedComponent implements OnInit {
 
 
 
-  
+
   mapoptions: google.maps.MapOptions = {
     mapTypeId: 'roadmap',
     zoom: 22,
-    center: this.RobishPosition,
+    center: this.RobishPosition
+    ,
     styles: [{
       featureType: 'poi',
       stylers: [
@@ -117,7 +109,7 @@ export class DeviceConnectedComponent implements OnInit {
     animation: google.maps.Animation.DROP,
     icon: this.Trash
   }
-  
+
 
 
   Endicon = {
@@ -135,8 +127,38 @@ export class DeviceConnectedComponent implements OnInit {
   EndOptions: google.maps.MarkerOptions = {
     draggable: false,
     animation: google.maps.Animation.DROP,
-    icon: this.Endicon
+    icon: this.Endicon,
+    position: this.EndPosition
   }
+
+  // bounds: google.maps.LatLngBoundsLiteral = {
+  //   east: this.RobishPosition?.lng,
+  //   north: this.EndPosition?.lat,
+  //   south: this.RobishPosition?.lat,
+  //   west: this.EndPosition?.lng,
+  // };
+
+  UserPosition = { lat: 36.88671, lng: 10.33171 };
+  UserIcon = {
+    path: faUserCircle.icon[4] as string,
+    fillColor: "#FF0000",
+    fillOpacity: 1,
+    anchor: new google.maps.Point(
+      faUserCircle.icon[0] / 2,
+      faUserCircle.icon[1]
+    ),
+    strokeWeight: 0.5,
+    strokeColor: "#ffffff",
+    scale: 0.075,
+  };
+
+  UserOptions: google.maps.MarkerOptions = {
+    draggable: false,
+    animation: google.maps.Animation.DROP,
+    icon: this.UserIcon,
+  }
+
+
 
 
 
@@ -144,38 +166,37 @@ export class DeviceConnectedComponent implements OnInit {
     throw new Error('Function not implemented.');
   }
 
-  getAll() {
+  getAll(_callback) {
     this.roomservice.getAll().snapshotChanges().
       pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
         console.log('robot');
         console.log(rs[0].battery.percentage);
         console.log(rs[0].location);
+        console.log(rs[0].destination);
         console.log(Object.values(rs[0].harmful));
         this.battery = rs[0].battery.percentage
-        this.RobishPosition= rs[0].location
+        this.RobishPosition = rs[0].location
         this.TrashPositions = Object.values(rs[0].harmful)
+        this.EndPosition = rs[0].destination
+        
       })
+      _callback();  
   }
+  getLocation(): any {
+    let result: any;
+    this.roomservice.getAll().snapshotChanges().
+      pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
+        result= rs[0].location
+      })
+      return result
+  }
+  secondFunction(){
 
-
-getLocation(): any {
-  let result: any;
-  this.roomservice.getAll().snapshotChanges().
-    pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
-      result= rs[0].location
-    })
-    return result
-}
-
-getList() : google.maps.LatLngLiteral[] {
-  let result: any
-  this.roomservice.getAll().snapshotChanges().
-    pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
-      result= Object.values(rs[0].harmful)
-    })
-    return result
-}
+    this.getAll(function() {
+        console.log('huzzah, I\'m done!');
+    });  
 
 }
+ 
 
-
+}
