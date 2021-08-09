@@ -22,6 +22,8 @@ export class DeviceConnectedComponent implements OnInit {
       this.infoWindow.open(marker);
     }
 
+    
+
 
   constructor(httpClient: HttpClient) { 
     this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyD_LibaclCk7zdY1BRY4FIsRU_lpgoWzRI', 'callback')
@@ -92,7 +94,34 @@ export class DeviceConnectedComponent implements OnInit {
     {lat: 36.8867,lng: 10.3315},
     {lat: 36.8868,lng: 10.3318},
     {lat: 36.8869,lng: 10.3311}]
-    EndPosition = {lat: 36.8866,lng: 10.3316};
+    EndPositions: google.maps.LatLngLiteral[] = [];
+    i = 0
+    bounds: google.maps.LatLngBoundsLiteral
+    addMarker(event: google.maps.MapMouseEvent) {
+      this.EndPositions.push(event.latLng.toJSON());
+      this.i++
+      if (this.i>1) {
+        this.EndPositions=[]
+        this.EndPositions.push(event.latLng.toJSON());
+      }
+      if (this.RobishPosition.lng>this.EndPositions[0].lng) {
+        this.bounds={
+          east: this.RobishPosition.lng,
+          north: this.EndPositions[0].lat,
+          south: this.RobishPosition.lat,
+          west: this.EndPositions[0].lng,
+        };
+      } else {
+        this.bounds={
+          east: this.EndPositions[0].lng,
+          north: this.RobishPosition.lat,
+          south: this.EndPositions[0].lat,
+          west: this.RobishPosition.lng,
+        };
+      }
+      
+      }
+
 
   Endicon= {
     path: faFlagCheckered.icon[4] as string,
@@ -110,15 +139,8 @@ export class DeviceConnectedComponent implements OnInit {
     draggable: false,
     animation: google.maps.Animation.DROP,
     icon:this.Endicon,
-    position:this.EndPosition
   }
-
-  bounds: google.maps.LatLngBoundsLiteral = {
-    east: this.RobishPosition.lng,
-    north: this.EndPosition.lat,
-    south: this.RobishPosition.lat,
-    west: this.EndPosition.lng,
-  };
+ 
 
   UserPosition = {lat: 36.88671,lng: 10.33171};
   UserIcon= {
@@ -140,6 +162,18 @@ export class DeviceConnectedComponent implements OnInit {
     icon:this.UserIcon,
   }
 
+
+   deleteMarkers() {
+    this.TrashPositions = [];
+    this.EndPositions = [];
+    this.bounds={
+          east: this.RobishPosition.lng,
+          north:this.RobishPosition.lng,
+          south: this.RobishPosition.lng,
+          west: this.RobishPosition.lng,
+    };
+  }
+  
 }
 
 
