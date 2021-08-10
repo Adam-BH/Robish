@@ -1,6 +1,6 @@
 <section>
-    <div class="map " *ngIf="apiLoaded | async">
-        <google-map [options]="mapoptions" height="400px" width="700px" width="100%">
+    <div class="map " *ngIf="(apiLoaded | async)" >
+        <google-map [options]="mapoptions" [center]="center" height="400px" width="700px" width="100%">
             <map-marker [position]="RobishPosition" [options]="RobishOptions"></map-marker>
             <map-marker [options]="TrashOptions" [position]="TrashPosition" *ngFor="let TrashPosition of TrashPositions" #marker="mapMarker" (mapClick)="openInfoWindow(marker)"></map-marker>
             <map-info-window>
@@ -12,8 +12,8 @@
                     <button type="button" class="btn btn-danger">Not Trash</button>
                 </div>
             </map-info-window>
-            <map-marker [position]="markerPosition" [options]="EndOptions"></map-marker>
-            <map-rectangle [bounds]="bounds"></map-rectangle>
+            <map-marker [position]="EndPosition" [options]="EndOptions"></map-marker>
+            <map-rectangle [options]="boundsOptions" [bounds]="bounds"></map-rectangle>
             <map-marker [position]="UserPosition" [options]="UserOptions"></map-marker>
         </google-map>
     </div>

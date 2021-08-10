@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, max } from 'rxjs/operators';
@@ -19,41 +19,58 @@ import { RoomCrudService } from '../services/room-crud.service';
 })
 export class DeviceConnectedComponent implements OnInit {
 
-  harmfulList: any;
-  harmlessList: any;
-  destination: any;
-  location: any;
   battery: any;
 
+  center!:any
+  bounds!:any
 
-  RobishPosition!:any
-  
+  RobishPosition!: any
+  UserPosition!:any
   TrashPositions: google.maps.LatLngLiteral[]
-  EndPosition!:any
-
-ngOnInit(): void {
-    this.secondFunction()
+  EndPosition!: any
 
 
+
+
+
+  async ngOnInit(): Promise<void> {
+
+    const value = <number>await this.getAll(20);
+    console.log(`async result: ${value}`);
+
+    const value0 = <number>await this.geolocation(20);
+    console.log(`async result: ${value0}`);
+
+   
+      this.bounds = {
+    east: this.RobishPosition.lng,
+    north: this.EndPosition.lat,
+    south: this.RobishPosition.lat,
+    west: this.EndPosition.lng,
+  };
+
+  
   }
+
+
   show() {
-    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition)
+    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition, this.UserPosition)
+   
   }
-
   apiLoaded: Observable<boolean>;
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
   openInfoWindow(marker: MapMarker) {
-    this.infoWindow.open(marker);
+  this.infoWindow.open(marker)
   }
 
 
-  constructor(httpClient: HttpClient, private roomservice: RoomCrudService) {
-    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyD_LibaclCk7zdY1BRY4FIsRU_lpgoWzRI', 'callback')
-      .pipe(
-        map(() => true),
-        catchError(() => of(false)),
-      );
+  constructor( httpClient: HttpClient, private roomservice: RoomCrudService) {
 
+    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyD_LibaclCk7zdY1BRY4FIsRU_lpgoWzRI', 'callback')
+    .pipe(
+      map(() => true, console.log("done")),
+      catchError(() => of(false)),
+    ); 
   }
 
 
@@ -80,18 +97,16 @@ ngOnInit(): void {
 
 
   mapoptions: google.maps.MapOptions = {
-    mapTypeId: 'roadmap',
-    zoom: 22,
-    center: this.RobishPosition
-    ,
-    styles: [{
-      featureType: 'poi',
-      stylers: [
-        { visibility: 'off' }
-      ]
-    }]
-  };
-
+        mapTypeId: 'roadmap',
+      zoom: 15,
+      styles: [{
+        featureType: 'poi',
+        stylers: [
+          { visibility: 'off' }
+        ]
+      }]
+    } 
+      
   Trash = {
     path: faTrash.icon[4] as string,
     fillColor: "#00A300",
@@ -128,17 +143,15 @@ ngOnInit(): void {
     draggable: false,
     animation: google.maps.Animation.DROP,
     icon: this.Endicon,
-    position: this.EndPosition
+   
+  }
+  boundsOptions={
+    clickable : false,
+    draggable: false,
+    fillColor: "green",
+    strokeWeight: 10	
   }
 
-  // bounds: google.maps.LatLngBoundsLiteral = {
-  //   east: this.RobishPosition?.lng,
-  //   north: this.EndPosition?.lat,
-  //   south: this.RobishPosition?.lat,
-  //   west: this.EndPosition?.lng,
-  // };
-
-  UserPosition = { lat: 36.88671, lng: 10.33171 };
   UserIcon = {
     path: faUserCircle.icon[4] as string,
     fillColor: "#FF0000",
@@ -166,7 +179,7 @@ ngOnInit(): void {
     throw new Error('Function not implemented.');
   }
 
-  getAll(_callback) {
+  getAll(x) {
     this.roomservice.getAll().snapshotChanges().
       pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
         console.log('robot');
@@ -178,25 +191,39 @@ ngOnInit(): void {
         this.RobishPosition = rs[0].location
         this.TrashPositions = Object.values(rs[0].harmful)
         this.EndPosition = rs[0].destination
-        
+        this.center = rs[0].location
       })
-      _callback();  
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(x);
+        }, 2000);
+      });
   }
-  getLocation(): any {
-    let result: any;
-    this.roomservice.getAll().snapshotChanges().
-      pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
-        result= rs[0].location
-      })
-      return result
+
+
+  geolocation(x){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position)=>{
+        this.UserPosition ={
+          lat:position.coords.longitude,
+          lng:position.coords.latitude
   }
-  secondFunction(){
+      });
+  } else {
+     console.log("No support for geolocation")
+  }
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(x);
+    }, 2000);
+  });
+  
+  
+  
+  }
 
-    this.getAll(function() {
-        console.log('huzzah, I\'m done!');
-    });  
 
-}
- 
+
+
 
 }
