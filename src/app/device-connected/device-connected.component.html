@@ -26,17 +26,17 @@
             <button type="button" class="btn btn-outline-success" style="width: 50%;align-self: center;">Start Scan</button>
         </div>
         <div class="func ">
-            <h3 class="st ">Status:ON/OFF</h3>
+            <h3 class="st ">Status : <span [ngStyle]="status=='Off'?{'color': 'red'} : {'color': 'green'}">{{status}}</span></h3>
             <h3 class="st ">Battery Percentage:{{battery}}</h3>
             <h3 class="st ">Distance Crossed:50M</h3>
-            <h3 class="st " style="margin-bottom: 20px; ">Trash Detected:30</h3>
+            <h3 class="st " style="margin-bottom: 20px; ">Trash Detected:{{trashDetected}}</h3>
             <div class="all-btns ">
                 <div class="btns ">
                     <button type="button " class="btn btn-primary">Reboot</button>
                     <button type="button " class="btn btn-danger ">Turn OFF</button>
                 </div>
                 <div class="btns " style="margin: -15px;">
-                    <button (click)="show()" type="reset " value="Reset " button type="button " class="btn btn-warning ">Reset Stats</button>
+                    <button (click)="show() " (click)="showBounds()" type="reset " value="Reset " button type="button " class="btn btn-warning ">Reset Stats</button>
                     <button type="reset " value="Reset " button type="button " class="btn btn-info" (click)="deleteMarkers()">Clear Map</button>
                 </div>
             </div>

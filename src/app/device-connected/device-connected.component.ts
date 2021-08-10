@@ -20,6 +20,8 @@ import { RoomCrudService } from '../services/room-crud.service';
 export class DeviceConnectedComponent implements OnInit {
 
   battery: any;
+  status:any
+  trashDetected:any
 
   center!:any
   bounds!:any
@@ -55,7 +57,7 @@ export class DeviceConnectedComponent implements OnInit {
 
   show() {
     console.log(this.RobishPosition, this.TrashPositions, this.EndPosition, this.UserPosition)
-   
+    this.getAll(20)
   }
   apiLoaded: Observable<boolean>;
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
@@ -126,13 +128,14 @@ export class DeviceConnectedComponent implements OnInit {
   }
 
     EndPositions: google.maps.LatLngLiteral[] = [];
-    i = 0
 
     addMarker(event: google.maps.MapMouseEvent) {
-      this.EndPositions.push(event.latLng.toJSON());
-      this.i++
-      if (this.i>1) {
+
+      if (this.EndPositions.length>=1) {
         this.EndPositions=[]
+        this.EndPositions.push(event.latLng.toJSON());
+      }
+      else{
         this.EndPositions.push(event.latLng.toJSON());
       }
       if (this.RobishPosition.lng>this.EndPositions[0].lng) {
@@ -150,12 +153,30 @@ export class DeviceConnectedComponent implements OnInit {
           west: this.RobishPosition.lng,
         };
       }
+
       
       }
 
+      showBounds(){
+       
+        if (this.RobishPosition.lng>this.EndPosition.lng) {
+          this.bounds={
+            east: this.RobishPosition.lng,
+            north: this.EndPosition.lat,
+            south: this.RobishPosition.lat,
+            west: this.EndPosition.lng,
+          };
+        } else {
+          this.bounds={
+            east: this.EndPosition.lng,
+            north: this.RobishPosition.lat,
+            south: this.EndPosition.lat,
+            west: this.RobishPosition.lng,
+          };
+        }
+      }
 
-
-
+      
   Endicon = {
     path: faFlagCheckered.icon[4] as string,
     fillColor: "#000000	",
@@ -234,6 +255,17 @@ export class DeviceConnectedComponent implements OnInit {
         this.TrashPositions = Object.values(rs[0].harmful)
         this.EndPosition = rs[0].destination
         this.center = rs[0].location
+        if (rs[0].status){
+        this.status = "On"
+        }
+        else{
+          this.status="Off"
+        }
+        this.trashDetected = this.TrashPositions.length
+        if (this.EndPositions.length!=0){
+        this.EndPositions.pop()
+        }
+        this.EndPositions.push(this.EndPosition)
       })
       return new Promise(resolve => {
         setTimeout(() => {

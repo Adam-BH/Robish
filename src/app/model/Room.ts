@@ -48,4 +48,6 @@ export class Room {
         state: boolean,
         value: number
     }
+    status: boolean
+    scanning: boolean
 }
