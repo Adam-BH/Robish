@@ -76,7 +76,8 @@ export class DeviceConnectedComponent implements OnInit {
   }
 
 
-  RobishIcon = {
+
+  RobishIcon= {
     path: faRobot.icon[4] as string,
     fillColor: "#1E90FF",
     fillOpacity: 1,
@@ -198,8 +199,8 @@ export class DeviceConnectedComponent implements OnInit {
   boundsOptions={
     clickable : false,
     draggable: false,
-    fillColor: "green",
-    strokeWeight: 10	
+    fillColor: "light green",
+    strokeWeight:1.5	
   }
 
   UserIcon = {
