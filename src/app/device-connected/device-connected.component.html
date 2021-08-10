@@ -1,6 +1,6 @@
 <section>
-    <div class="map " *ngIf="(apiLoaded | async)" >
-        <google-map [options]="mapoptions" [center]="center" height="400px" width="700px" width="100%">
+    <div class="map " *ngIf="apiLoaded | async">
+        <google-map [options]="mapoptions" [center]="center" height="400px" width="700px" width="100%" (mapClick)="addMarker($event)">
             <map-marker [position]="RobishPosition" [options]="RobishOptions"></map-marker>
             <map-marker [options]="TrashOptions" [position]="TrashPosition" *ngFor="let TrashPosition of TrashPositions" #marker="mapMarker" (mapClick)="openInfoWindow(marker)"></map-marker>
             <map-info-window>
@@ -12,7 +12,7 @@
                     <button type="button" class="btn btn-danger">Not Trash</button>
                 </div>
             </map-info-window>
-            <map-marker [position]="EndPosition" [options]="EndOptions"></map-marker>
+            <map-marker *ngFor="let EndPosition of EndPositions" [position]="EndPosition" [options]="EndOptions"></map-marker>
             <map-rectangle [options]="boundsOptions" [bounds]="bounds"></map-rectangle>
             <map-marker [position]="UserPosition" [options]="UserOptions"></map-marker>
         </google-map>
@@ -21,8 +21,9 @@
         <div>
             <img src="assets/illustrations/Device/bot_icon.gif " alt=" " class="av ">
         </div>
-        <div>
+        <div class="strt">
             <h1 class="nv ">Device Name</h1>
+            <button type="button" class="btn btn-outline-success" style="width: 50%;align-self: center;">Start Scan</button>
         </div>
         <div class="func ">
             <h3 class="st ">Status:ON/OFF</h3>
@@ -31,11 +32,12 @@
             <h3 class="st " style="margin-bottom: 20px; ">Trash Detected:30</h3>
             <div class="all-btns ">
                 <div class="btns ">
-                    <button type="button " class="btn btn-success ">Reboot</button>
+                    <button type="button " class="btn btn-primary">Reboot</button>
                     <button type="button " class="btn btn-danger ">Turn OFF</button>
                 </div>
-                <div style="width: 50%; ">
-                    <button (click)="show()" type="reset " value="Reset " button type="button " class="btn btn-warning " style="width: 100%; " id="reset1">Reset Stats</button>
+                <div class="btns " style="margin: -15px;">
+                    <button (click)="show()" type="reset " value="Reset " button type="button " class="btn btn-warning ">Reset Stats</button>
+                    <button type="reset " value="Reset " button type="button " class="btn btn-info" (click)="deleteMarkers()">Clear Map</button>
                 </div>
             </div>
         </div>

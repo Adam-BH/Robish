@@ -125,6 +125,35 @@ export class DeviceConnectedComponent implements OnInit {
     icon: this.Trash
   }
 
+    EndPositions: google.maps.LatLngLiteral[] = [];
+    i = 0
+
+    addMarker(event: google.maps.MapMouseEvent) {
+      this.EndPositions.push(event.latLng.toJSON());
+      this.i++
+      if (this.i>1) {
+        this.EndPositions=[]
+        this.EndPositions.push(event.latLng.toJSON());
+      }
+      if (this.RobishPosition.lng>this.EndPositions[0].lng) {
+        this.bounds={
+          east: this.RobishPosition.lng,
+          north: this.EndPositions[0].lat,
+          south: this.RobishPosition.lat,
+          west: this.EndPositions[0].lng,
+        };
+      } else {
+        this.bounds={
+          east: this.EndPositions[0].lng,
+          north: this.RobishPosition.lat,
+          south: this.EndPositions[0].lat,
+          west: this.RobishPosition.lng,
+        };
+      }
+      
+      }
+
+
 
 
   Endicon = {
@@ -170,6 +199,19 @@ export class DeviceConnectedComponent implements OnInit {
     animation: google.maps.Animation.DROP,
     icon: this.UserIcon,
   }
+
+
+   deleteMarkers() {
+    this.TrashPositions = [];
+    this.EndPositions = [];
+    this.bounds={
+          east: this.RobishPosition.lng,
+          north:this.RobishPosition.lng,
+          south: this.RobishPosition.lng,
+          west: this.RobishPosition.lng,
+    };
+  }
+  
 
 
 
