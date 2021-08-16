@@ -1,6 +1,6 @@
 <section>
     <div class="map " *ngIf="apiLoaded | async">
-        <google-map [options]="mapoptions" height="400px" width="700px" width="100%" (mapClick)="addMarker($event)">
+        <google-map [options]="mapoptions" [center]="center" height="400px" width="700px" width="100%" (mapClick)="addMarker($event)">
             <map-marker [position]="RobishPosition" [options]="RobishOptions"></map-marker>
             <map-marker [options]="TrashOptions" [position]="TrashPosition" *ngFor="let TrashPosition of TrashPositions" #marker="mapMarker" (mapClick)="openInfoWindow(marker)"></map-marker>
             <map-info-window>
@@ -13,7 +13,7 @@
                 </div>
             </map-info-window>
             <map-marker *ngFor="let EndPosition of EndPositions" [position]="EndPosition" [options]="EndOptions"></map-marker>
-            <map-rectangle [bounds]="bounds" [options]="boundsopt"></map-rectangle>
+            <map-rectangle [options]="boundsOptions" [bounds]="bounds"></map-rectangle>
             <map-marker [position]="UserPosition" [options]="UserOptions"></map-marker>
         </google-map>
     </div>
@@ -26,21 +26,25 @@
             <button type="button" class="btn btn-outline-success" style="width: 50%;align-self: center;">Start Scan</button>
         </div>
         <div class="func ">
-            <h3 class="st ">Status:ON/OFF</h3>
-            <h3 class="st ">Battery Percentage:100%</h3>
+            <h3 class="st ">Status : <span [ngStyle]="status=='Off'?{'color': 'red'} : {'color': 'green'}">{{status}}</span></h3>
+            <h3 class="st ">Battery Percentage:{{battery}}</h3>
             <h3 class="st ">Distance Crossed:50M</h3>
-            <h3 class="st " style="margin-bottom: 20px; ">Trashs Detected:30</h3>
+            <h3 class="st " style="margin-bottom: 20px; ">Trash Detected:{{trashDetected}}</h3>
             <div class="all-btns ">
                 <div class="btns ">
                     <button type="button " class="btn btn-primary">Reboot</button>
                     <button type="button " class="btn btn-danger ">Turn OFF</button>
                 </div>
                 <div class="btns " style="margin: -15px;">
-                    <button type="reset " value="Reset " button type="button " class="btn btn-warning ">Reset Stats</button>
+                    <button (click)="show() " (click)="showBounds()" type="reset " value="Reset " button type="button " class="btn btn-warning ">Reset Stats</button>
                     <button type="reset " value="Reset " button type="button " class="btn btn-info" (click)="deleteMarkers()">Clear Map</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <script language="javascript">
+        setTimeout(function() {
+            window.location.reload(1);
+        }, 5000);
+    </script>
 </section>
