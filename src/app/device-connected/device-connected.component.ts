@@ -173,7 +173,11 @@ export class DeviceConnectedComponent implements OnInit {
           west: this.RobishPosition.lng,
     };
   }
-  
+  boundsopt:google.maps.RectangleOptions={
+    strokeWeight: 1.5,
+    strokeColor: "#00FF7F",
+    fillColor: "#FF0000",
+    }
 }
 
 

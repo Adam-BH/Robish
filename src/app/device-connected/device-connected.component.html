@@ -13,7 +13,7 @@
                 </div>
             </map-info-window>
             <map-marker *ngFor="let EndPosition of EndPositions" [position]="EndPosition" [options]="EndOptions"></map-marker>
-            <map-rectangle [bounds]="bounds"></map-rectangle>
+            <map-rectangle [bounds]="bounds" [options]="boundsopt"></map-rectangle>
             <map-marker [position]="UserPosition" [options]="UserOptions"></map-marker>
         </google-map>
     </div>

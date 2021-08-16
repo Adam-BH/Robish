@@ -31,7 +31,7 @@
 .footer-basic .social {
     text-align: center;
     padding-bottom: 25px;
-    color: rgb(142, 138, 196);
+    color: snow;
 }
 
 .footer-basic .social>a {
@@ -58,4 +58,5 @@
     font-size: 13px;
     color: #aaa;
     margin-bottom: 0;
+    font-family: 'Overpass', sans-serif;
 }
