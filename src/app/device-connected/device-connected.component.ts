@@ -12,6 +12,8 @@ import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { RoomCrudService } from '../services/room-crud.service';
 
 
+
+
 @Component({
   selector: 'app-device-connected',
   templateUrl: './device-connected.component.html',
@@ -19,6 +21,8 @@ import { RoomCrudService } from '../services/room-crud.service';
 })
 export class DeviceConnectedComponent implements OnInit {
 
+  code:any
+  scanning: any
   battery: any;
   status:any
   trashDetected:any
@@ -36,12 +40,14 @@ export class DeviceConnectedComponent implements OnInit {
 
 
   async ngOnInit(): Promise<void> {
+    const value2 = <number>await this.getCode(30);
+    console.log(`async result: ${value2}`);
 
-    const value = <number>await this.getAll(20);
-    console.log(`async result: ${value}`);
-
-    const value0 = <number>await this.geolocation(20);
+    const value0 = <number>await this.getAll(20);
     console.log(`async result: ${value0}`);
+
+    const value1 = <number>await this.geolocation(20);
+    console.log(`async result: ${value1}`);
 
    
       this.bounds = {
@@ -55,10 +61,7 @@ export class DeviceConnectedComponent implements OnInit {
   }
 
 
-  show() {
-    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition, this.UserPosition)
-    this.getAll(20)
-  }
+  
   apiLoaded: Observable<boolean>;
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
   openInfoWindow(marker: MapMarker) {
@@ -131,7 +134,7 @@ export class DeviceConnectedComponent implements OnInit {
     EndPositions: google.maps.LatLngLiteral[] = [];
 
     addMarker(event: google.maps.MapMouseEvent) {
-
+      if (!this.scanning){
       if (this.EndPositions.length>=1) {
         this.EndPositions=[]
         this.EndPositions.push(event.latLng.toJSON());
@@ -154,8 +157,8 @@ export class DeviceConnectedComponent implements OnInit {
           west: this.RobishPosition.lng,
         };
       }
-
-      
+    }
+    
       }
 
       showBounds(){
@@ -243,30 +246,47 @@ export class DeviceConnectedComponent implements OnInit {
     throw new Error('Function not implemented.');
   }
 
+  getCode(x): any {
+    
+    this.roomservice.getCode().snapshotChanges().
+      pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
+        
+        this.code=rs[0].code
+      });
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(x);
+        }, 500);
+      });
+
+  }
+
   getAll(x) {
     this.roomservice.getAll().snapshotChanges().
       pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
         console.log('robot');
-        console.log(rs[0].battery.percentage);
-        console.log(rs[0].location);
-        console.log(rs[0].destination);
-        console.log(Object.values(rs[0].harmful));
-        this.battery = rs[0].battery.percentage
-        this.RobishPosition = rs[0].location
-        this.TrashPositions = Object.values(rs[0].harmful)
-        this.EndPosition = rs[0].destination
-        this.center = rs[0].location
-        if (rs[0].status){
-        this.status = "On"
-        }
-        else{
-          this.status="Off"
-        }
+       console.log(this.code);
+       var i=rs.findIndex(x => x.key === this.code);
+       console.log(i)
+
+        
+        console.log(rs[i].location);
+        
+        console.log(rs[i].destination);
+        console.log(Object.values(rs[i].harmful));
+        this.battery = rs[i].battery.percentage
+        this.RobishPosition = rs[i].location
+        this.TrashPositions = Object.values(rs[i].harmful)
+        this.EndPosition = rs[i].destination
+        this.center = rs[i].location
+        this.status=rs[i].status
         this.trashDetected = this.TrashPositions.length
         if (this.EndPositions.length!=0){
         this.EndPositions.pop()
         }
         this.EndPositions.push(this.EndPosition)
+        this.scanning= rs[i].scanning
+        this.showBounds()
       })
       return new Promise(resolve => {
         setTimeout(() => {
@@ -297,8 +317,40 @@ export class DeviceConnectedComponent implements OnInit {
   
   }
 
+  show() {
+    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition, this.UserPosition)
+    this.getAll(20)
+  }
 
 
 
+  updateScanning(){
+    this.showBounds()
+    this.roomservice.update(this.code,{scanning:true}).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+    this.roomservice.update(this.code,{destination:this.EndPositions[0]}).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  
+  }
+
+  updateStatus(){
+    this.roomservice.update(this.code,{scanning:false}).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+    this.roomservice.update(this.code,{status:false}).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  } 
+  
 
 }

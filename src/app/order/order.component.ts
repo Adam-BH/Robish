@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+  form=true
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  openForm(){
+    this.form=false
+    window.scroll(0,0);
+  }
+  closeForm(){
+    this.form=true
+    window.scroll(0,0);
   }
  }
 

@@ -3,19 +3,19 @@
 <div class="container">
     <div class="screen">
         <div class="screen__content">
-            <form class="login">
+            <div class="login">
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
-                    <input type="text" class="login__input" placeholder="User CODE">
+                    <input type="text" class="login__input" name='Code' id="code" placeholder="User CODE">
                 </div>
                 <div class="connect">
                     <p>*Type The Device Code To Connect it </p>
                 </div>
-                <button class="button login__submit" routerLink="/devicec">
-                    <span class="button__text" >Connect</span>
+                <button class="button login__submit" (click)='go()'  >
+                    <span class="button__text"  >Connect</span>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
-            </form>
+            </div>
         </div>
         <div class="screen__background">
             <span class="screen__background__shape screen__background__shape4"></span>

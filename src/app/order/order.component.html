@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="form">
     <div>
         <h1 class="ha">Order Now To Make That Change</h1>
     </div>
@@ -9,8 +9,8 @@
 
             <div class="dis-btno">
                 <div class="dis">
-                    <p>Robish is a robot that helps you with your World Saving mission. Once you scan the QR Code, you tigger robish. Choose the auto-romote mode or control it yoursel using the real-time video. Robish can detetct trash, tells you about its
-                        material and even put it in bags based on the material. Now that cleaning beaches is easier, what is your excuse to buy Robish and make s tep towards a cleaner world?</p>
+                    <p>Robish is a robot that helps you with your World Saving mission. Once you enter the Code, you tigger robish. Choose the auto-romote mode or control it yoursel using the real-time video. Robish can detetct trash, tell you about its
+                        material and even put it in bags based on the material. Now that cleaning beaches is easier, what is your excuse not to buy Robish and make a step towards a cleaner environment?</p>
                 </div>
                 <div class="btno">
                     <button type="button" class="btn btn-success" id="btn">Order</button>
@@ -21,14 +21,15 @@
         </div>
 
     </div>
-</section>
-<section>
+
+
     <div class="cont-div">
         <div>
             <h3 class="hb">Got a Problem, Don't be Afraid To Share it With us. </h3>
         </div>
-        <button onclick="openForm()" class="btn btn-danger" id="btnc">Contact us</button>
+        <button onclick="openForm()" (click)="openForm()" class="btn btn-danger" id="btnc">Contact us</button>
     </div>
+</section>
     <section class="ftco-section" id="myForm">
         <div class="container">
             <div class="row justify-content-center">
@@ -69,7 +70,7 @@
                                                     <div class="order">
                                                         <input type="submit" value="Send Message" class="btn btn-primary" style="margin-right: 10px;">
                                                         <div class="submitting"></div>
-                                                        <button type="button" class="btn btn-danger" onclick="closeForm()">Cancel</button>
+                                                        <button type="button" class="btn btn-danger" (click)="closeForm()" onclick="closeForm()">Cancel</button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -135,10 +135,12 @@
     display: none;
     background-color: #36454F;
     background-size: 75px 100px;
-    width: auto;
+    width: 90%;
     height: auto;
     position: relative;
-    bottom: 850px;
+    margin: auto;
+    border-radius: 40px;
+
 }
 
 @media only screen and (min-width: 1600px) {
@@ -146,7 +148,7 @@
         width: 50%;
         height: auto;
         position: relative;
-        top: 80px;
+        
         border-radius: 30px;
     }
     #btn {
@@ -165,7 +167,7 @@
         width: 50%;
         height: auto;
         position: relative;
-        top: 250px;
+        
         border-radius: 30px;
     }
     #btn {
