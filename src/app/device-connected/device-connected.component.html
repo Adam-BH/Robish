@@ -23,13 +23,13 @@
         </div>
         <div class="strt">
             <h1 class="nv ">Device ID : <span class="stat">{{code}} </span></h1>
-            <button  type="button" (click)="updateScanning()" class="btn btn-outline-success" style="width: auto;align-self: center;" [disabled]='!status || scanning' [ngClass]="{ 'scanningOff' : !status,'scanningTrue': scanning}">{{!status? "Can't scan while device is off":(scanning? 'Scanning...' : 'Start scan')}}</button>
+            <button type="button" (click)="updateScanning()" class="btn btn-outline-success" style="width: auto;align-self: center;" [disabled]='!status || scanning' [ngClass]="{ 'scanningOff' : !status,'scanningTrue': scanning}">{{!status? "Can't scan while device is off":(scanning? 'Scanning...' : 'Start scan')}}</button>
         </div>
         <div class="func ">
             <h3 class="st ">Status : <span [ngStyle]="!status?{'color': 'red'} : {'color': 'green'}">{{status? 'On' : 'Off'}}</span></h3>
-            <h3 class="st ">  Battery Percentage : <span class="stat">{{battery}}%</span></h3>
-            <h3 class="st ">  Distance Crossed : <span class="stat">50M </span></h3>
-            <h3 class="st " style="margin-bottom: 20px; ">  Trash Detected : <span class="stat">{{trashDetected}} </span></h3>
+            <h3 class="st "> Battery Percentage : <span class="stat">{{battery}}%</span></h3>
+            <h3 class="st "> Distance Crossed : <span class="stat">50M </span></h3>
+            <h3 class="st " style="margin-bottom: 20px; "> Trash Detected : <span class="stat">{{trashDetected}} </span></h3>
             <div class="all-btns ">
                 <div class="btns ">
                     <button type="button " class="btn btn-primary">Reboot</button>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="btns " style="margin: -15px;">
                     <button (click)="show() " (click)="showBounds()" type="reset " value="Reset " button type="button " class="btn btn-warning ">Reset Stats</button>
-                    <button type="reset " value="Reset " button type="button " class="btn btn-info" (click)="deleteMarkers()">Clear Map</button>
+                    <button type="reset " value="Reset " button type="button " class="btn btn-info" (click)="deleteMarkers()">Hide Icons</button>
                 </div>
             </div>
         </div>

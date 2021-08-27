@@ -351,6 +351,4 @@ export class DeviceConnectedComponent implements OnInit {
       console.log(err)
     })
   } 
-  
-
 }
