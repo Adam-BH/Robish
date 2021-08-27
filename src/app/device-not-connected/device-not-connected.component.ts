@@ -11,6 +11,7 @@ import { RoomCrudService } from '../services/room-crud.service';
 export class DeviceNotConnectedComponent implements OnInit {
   result = false
   code:any
+  permission = false
 
   constructor(private route:Router, private roomservice: RoomCrudService) {
   
@@ -35,6 +36,9 @@ export class DeviceNotConnectedComponent implements OnInit {
       this.route.navigate(['/','devicec']);
 
       
+    }
+    else{
+      this.permission=true
     }
     
 		

@@ -1,3 +1,4 @@
+
 export class Room {
     key: string;
     battery :{
@@ -17,10 +18,10 @@ export class Room {
         lng: number
     }
     directions :{
-        right: boolean,
-        left : boolean,
-        forward : boolean,
-        backward : boolean
+        right: any,
+        left : any,
+        forward : any,
+        backward : any
     }
     harmful :{
         KSADKSA847s : {
@@ -31,7 +32,8 @@ export class Room {
     harmless :{
         KSADKSA847s: {
             lat : number,
-            lng : number
+            lng : number,
+            accuracy: any
         }
     }
     inductiveSens :{
@@ -48,6 +50,8 @@ export class Room {
         state: boolean,
         value: number
     }
-    status: boolean
-    scanning: boolean
+    distance: number
+    status: any
+    scanning: any
+    manual: any
 }

@@ -10,12 +10,15 @@
                 </div>
                 <div class="connect">
                     <p>*Type The Device Code To Connect it </p>
+                    <p *ngIf="permission" style="color: red; font-size: 10px;">your code is incorrect, try again</p>
                 </div>
                 <button class="button login__submit" (click)='go()'  >
                     <span class="button__text"  >Connect</span>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
+                
             </div>
+            
         </div>
         <div class="screen__background">
             <span class="screen__background__shape screen__background__shape4"></span>

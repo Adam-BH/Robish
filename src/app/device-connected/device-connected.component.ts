@@ -31,13 +31,17 @@ export class DeviceConnectedComponent implements OnInit {
   bounds!:any
 
   RobishPosition!: any
-  UserPosition!:any
+  
   TrashPositions: google.maps.LatLngLiteral[]
   EndPosition!: any
 
+  distance:any
+  trashKeys: any
 
-
-
+  currentPosition: any
+  
+  harmless: any
+  giveLocation=false
 
   async ngOnInit(): Promise<void> {
     const value2 = <number>await this.getCode(30);
@@ -46,8 +50,7 @@ export class DeviceConnectedComponent implements OnInit {
     const value0 = <number>await this.getAll(20);
     console.log(`async result: ${value0}`);
 
-    const value1 = <number>await this.geolocation(20);
-    console.log(`async result: ${value1}`);
+    
 
    
       this.bounds = {
@@ -206,28 +209,14 @@ export class DeviceConnectedComponent implements OnInit {
     strokeWeight:1.5	
   }
 
-  UserIcon = {
-    path: faUserCircle.icon[4] as string,
-    fillColor: "#FF0000",
-    fillOpacity: 1,
-    anchor: new google.maps.Point(
-      faUserCircle.icon[0] / 2,
-      faUserCircle.icon[1]
-    ),
-    strokeWeight: 0.5,
-    strokeColor: "#ffffff",
-    scale: 0.075,
-  };
 
-  UserOptions: google.maps.MarkerOptions = {
-    draggable: false,
-    animation: google.maps.Animation.DROP,
-    icon: this.UserIcon,
-  }
+
+
 
 
    deleteMarkers() {
     this.TrashPositions = [];
+   
     this.EndPositions = [];
     this.bounds={
           east: this.RobishPosition.lng,
@@ -264,7 +253,7 @@ export class DeviceConnectedComponent implements OnInit {
   getAll(x) {
     this.roomservice.getAll().snapshotChanges().
       pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe(rs => {
-        console.log('robot');
+      console.log('robot');
        console.log(this.code);
        var i=rs.findIndex(x => x.key === this.code);
        console.log(i)
@@ -276,16 +265,24 @@ export class DeviceConnectedComponent implements OnInit {
         console.log(Object.values(rs[i].harmful));
         this.battery = rs[i].battery.percentage
         this.RobishPosition = rs[i].location
+        this.distance = rs[i].distance
+
         this.TrashPositions = Object.values(rs[i].harmful)
+        this.TrashPositions.splice(this.TrashPositions.indexOf({lat:123, lng:123}), 1);
+        this.trashKeys = Object.keys(rs[i].harmful)
+        this.trashKeys.splice(this.trashKeys.indexOf("static"), 1);
+
+        this.harmless = Object.entries(rs[i].harmless)
+        
         this.EndPosition = rs[i].destination
         this.center = rs[i].location
-        this.status=rs[i].status
+        this.status=rs[i].status==true
         this.trashDetected = this.TrashPositions.length
         if (this.EndPositions.length!=0){
         this.EndPositions.pop()
         }
         this.EndPositions.push(this.EndPosition)
-        this.scanning= rs[i].scanning
+        this.scanning= rs[i].scanning==true || rs[i].scanning=="true"
         this.showBounds()
       })
       return new Promise(resolve => {
@@ -295,37 +292,77 @@ export class DeviceConnectedComponent implements OnInit {
       });
   }
 
+  updateLocation(){
+    var lat =(<HTMLInputElement>document.getElementById("latitude")).value
+    var lng =(<HTMLInputElement>document.getElementById("longitude")).value
+    if(lat != "" && lng != ""){
+      this.roomservice.updateLocationLat("location",{lat:parseFloat(lat)},this.code).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+      this.roomservice.updateLocationLng("location",{lng:parseFloat(lng)},this.code).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+   
+  }
 
-  geolocation(x){
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position)=>{
-        this.UserPosition ={
-          lat:position.coords.longitude,
-          lng:position.coords.latitude
+  showInput(state){
+    this.giveLocation=state
+
   }
-      });
-  } else {
-     console.log("No support for geolocation")
+  
+  current(position){
+    this.currentPosition=position
+
   }
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(x);
-    }, 2000);
-  });
   
-  
-  
+  updateAccuracy(state){
+    var position
+    for (var i of this.harmless){
+      console.log(i)
+      if (i[1].lat==this.currentPosition.lat && i[1].lng==this.currentPosition.lng){
+        console.log(i)
+        position=i[0]
+      }
+    }
+    this.roomservice.updateAccuracy(position,{accuracy:state},this.code).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   show() {
-    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition, this.UserPosition)
+    console.log(this.RobishPosition, this.TrashPositions, this.EndPosition)
     this.getAll(20)
   }
 
-
+  removeTrash(){
+    for (var index = 0; index < this.trashKeys.length; index++) { 
+      this.roomservice.DeleteOne(this.trashKeys[index], this.code).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+  }
+  this.roomservice.update(this.code,{distance:0}).then(res => {
+    console.log(res)
+  }).catch(err => {
+    console.log(err)
+  }) 
+  }
 
   updateScanning(){
     this.showBounds()
+    this.roomservice.update(this.code,{manual:false}).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
     this.roomservice.update(this.code,{scanning:true}).then(res => {
       console.log(res)
     }).catch(err => {

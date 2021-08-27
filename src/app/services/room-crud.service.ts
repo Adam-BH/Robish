@@ -26,9 +26,11 @@ export class RoomCrudService {
   updated:AngularFireObject<Room>
 
   code:AngularFireList<code>
+
+  
   
   constructor( private db: AngularFireDatabase) { 
-    this.harmfulref=this.db.list(this.pathHarmful)
+    this.harmfulref=this.db.list("/robots/KSAsjaAKS/harmful")
     this.harmlessref=this.db.list(this.pathHarmless)
     this.destination=this.db.list(this.pathdestination)
     this.location=this.db.list(this.pathlocation)
@@ -78,9 +80,19 @@ export class RoomCrudService {
   updateCode( key:string,value: any):Promise<any>{
     return this.code.update(key, value)
   }
+  updateAccuracy( key:string,value: any, code: string):Promise<any>{
+    return this.db.list("/robots/"+code+"/harmless").update(key, value)
+  }
 
-  DeleteOne(key:string): Promise<any> {
-    return this.harmfulref.remove(key)
+  updateLocationLat( key:string,value: any, code: string):Promise<any>{
+    return this.db.list("/robots/"+code).update(key, value)
+  }
+  updateLocationLng( key:string,value: any, code: string):Promise<any>{
+    return this.db.list("/robots/"+code).update(key, value)
+  }
+
+  DeleteOne(key:string, code: string): Promise<any> {
+    return this.db.list("/robots/"+code+"/harmful").remove(key)
   }
 
   DeleteAll():Promise<any>{
