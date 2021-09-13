@@ -4,6 +4,11 @@ section {
     margin: 5% 5%;
     align-items: center;
 }
+.live{
+    display: flex;
+    flex-direction: column;
+
+}
 
 .av {
     width: 100%;
@@ -48,6 +53,14 @@ img {
     animation-iteration-count: infinite;
     transform-origin: bottom;
     flex-basis: 50%;
+}
+.cam {
+    border: 10px solid #ffffff;
+    height: 300px;
+    animation-name: bounce;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
 }
 
 @keyframes bounce {
@@ -156,6 +169,7 @@ img {
     .map {
         border: 10px solid #ffffff;
         height: 400px;
+        width: 60%;
         animation-name: bounce;
         animation-duration: 15s;
         animation-iteration-count: infinite;

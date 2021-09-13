@@ -1,4 +1,5 @@
 <section>
+    <div class="live">
     <div class="map " *ngIf="apiLoaded | async">
         <google-map [options]="mapoptions" [center]="center" height="400px" width="700px" width="100%" (mapClick)="addMarker($event)">
             <map-marker [position]="RobishPosition" [options]="RobishOptions"></map-marker>
@@ -16,6 +17,11 @@
             <map-rectangle [options]="boundsOptions" [bounds]="bounds"></map-rectangle>
             
         </google-map>
+    </div>
+    <div class="cam" style="margin: 50px;">
+        <img id="image" width="300" height="300"/>
+        <canvas id="canvas" width="300" heigth="300"></canvas>
+    </div>
     </div>
     <div class="profile ">
         <div>
@@ -61,3 +67,5 @@
         }, 5000);
     </script>
 </section>
+
+<script src="src/assets/js/live.js"></script>
